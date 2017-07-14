@@ -121,16 +121,18 @@ class XpStack:
 		count = 0
 		maxToCount = 0 # Longest username length in to column
 		maxFromCount = 0 # Longest username length in from column
-		msg = "```Recent XP Transactions in {}:\n\n".format(ctx.guild.name)
 		for i in range(len(xp_array)):
-			i = xp_array[len(xp_array)-1-i]
-			count += 1
 			to_user = i["To"][:-5]
 			if len(to_user) > maxToCount:
 				maxToCount = len(to_user)
 			from_user = i["From"][:-5]
 			if len(from_user) > maxFromCount:
 				maxFromCount = len(from_user)
+				
+		msg = "```Recent XP Transactions in {}:\n\n".format(ctx.guild.name)
+		for i in range(len(xp_array)):
+			i = xp_array[len(xp_array)-1-i]
+			count += 1
 			time = i["Time"]
 			amount = i["Amount"]
 			msg += "{:>3}. {} --[{:5} xp]--> {} at {}\n".format(count, from_user.ljust(maxFromCount), amount, to_user.ljust(maxToCount), time)
