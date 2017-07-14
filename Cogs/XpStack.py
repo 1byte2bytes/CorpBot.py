@@ -122,6 +122,7 @@ class XpStack:
 		maxToCount = 0 # Longest username length in to column
 		maxFromCount = 0 # Longest username length in from column
 		for i in range(len(xp_array)):
+			i = xp_array[len(xp_array)-1-i]
 			to_user = i["To"][:-5]
 			if len(to_user) > maxToCount:
 				maxToCount = len(to_user)
@@ -133,6 +134,8 @@ class XpStack:
 		for i in range(len(xp_array)):
 			i = xp_array[len(xp_array)-1-i]
 			count += 1
+			to_user = i["To"][:-5]
+			from_user = i["From"][:-5]
 			time = i["Time"]
 			amount = i["Amount"]
 			msg += "{:>3}. {} --[{:5} xp]--> {} at {}\n".format(count, from_user.ljust(maxFromCount), amount, to_user.ljust(maxToCount), time)
