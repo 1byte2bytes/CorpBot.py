@@ -119,15 +119,16 @@ class XpStack:
 			return
 
 		count = 0
-		msg = "__Recent XP Transactions in *{}*:__\n\n".format(ctx.guild.name)
+		msg = "```__Recent XP Transactions in *{}*:__\n\n".format(ctx.guild.name)
 		for i in range(len(xp_array)):
 			i = xp_array[len(xp_array)-1-i]
 			count += 1
-			to_user = i["To"]
-			from_user = i["From"]
+			to_user = i["To"][:-5]
+			from_user = i["From"][:-5]
 			time = i["Time"]
 			amount = i["Amount"]
-			msg += "{}. *{}* --[{} xp]--> *{}* at {}\n".format(count, from_user, amount, to_user, time)
+			msg += "{:3}. *{:32}* --[{:5} xp]--> *{:32}* at {}\n".format(count, from_user, amount, to_user, time)
+		msg += "```"
 		# Check for suppress
 		if suppress:
 			msg = Nullify.clean(msg)
