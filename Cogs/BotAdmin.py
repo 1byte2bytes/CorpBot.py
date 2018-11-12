@@ -194,11 +194,11 @@ class BotAdmin:
 		if cooldown:
 			mins = "minutes"
 			checkRead = ReadableTime.getReadableTimeBetween(currentTime, cooldownFinal)
-			msg = '*{}* has been **Muted** for *{}*.'.format(DisplayName.name(member), checkRead)
-			pm  = 'You have been **Muted** by *{}* for *{}*.\n\nYou will not be able to send messages on *{}* until either that time has passed, or you have been **Unmuted**.'.format(DisplayName.name(ctx.message.author), checkRead, ctx.message.server.name)
+			msg = '*{}* has been **muted** for *{}*.'.format(DisplayName.name(member), checkRead)
+			pm  = 'You have been **muted** by *{}* for *{}*.\n\nYou will not be able to send messages on *{}* until either that time has passed, or you have been **Unmuted**.'.format(DisplayName.name(ctx.message.author), checkRead, ctx.message.server.name)
 		else:
-			msg = '*{}* has been **Muted** *until further notice*.'.format(DisplayName.name(member))
-			pm  = 'You have been **Muted** by *{}* *until further notice*.\n\nYou will not be able to send messages on *{}* until you have been **Unmuted**.'.format(DisplayName.name(ctx.message.author), ctx.message.server.name)
+			msg = '*{}* has been **muted** *until further notice*.'.format(DisplayName.name(member))
+			pm  = 'You have been **muted** by *{}* *until further notice*.\n\nYou will not be able to send messages on *{}* until you have been **unmuted**.'.format(DisplayName.name(ctx.message.author), ctx.message.server.name)
 
 		await self.bot.send_message(ctx.message.channel, msg)
 		await self.bot.send_message(member, pm)
@@ -251,8 +251,8 @@ class BotAdmin:
 
 		await self.muter.unmute(member, ctx.message.server)
 
-		pm = 'You have been **Unmuted** by *{}*.\n\nYou can send messages on *{}* again.'.format(DisplayName.name(ctx.message.author), ctx.message.server.name)
-		msg = '*{}* has been **Unmuted**.'.format(DisplayName.name(member))
+		pm = 'You have been **unmuted** by *{}*.\n\nYou can send messages on *{}* again.'.format(DisplayName.name(ctx.message.author), ctx.message.server.name)
+		msg = '*{}* has been **unmuted**.'.format(DisplayName.name(member))
 		self.settings.setUserStat(member, ctx.message.server, "Muted", "No")
 		self.settings.setUserStat(member, ctx.message.server, "Cooldown", None)
 
